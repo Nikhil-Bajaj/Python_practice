@@ -1,0 +1,77 @@
+from tkinter import *
+import threading
+import requests
+class Getfare(threading.Thread):
+    def run(self):
+        startLat =  sLatitude.get()                #float(input("Starting Latitude"))
+        startLong = sLongitude.get()                               #float(input("Starting Long"))
+        endLat =    eLatitude.get()                               #float(input('endingLat'))
+        endLong =   eLongitude.get()                                #float(input("ending Long"))
+        url = "https://api.uber.com/v1.2/estimates/price?start_latitude={}&start_longitude={}&end_latitude={}&end_longitude={}".format(startLat,startLong,endLat,endLong)
+        header = {'Authorization': 'Token Uvr-jS9IbX5W6FZ4R0iZDt5CS7HHlaBrFdjyBuDo','Accept-Language': 'en_US', 'Content-Type': 'application/json'}
+        response = requests.get(url,headers = header)
+
+        json = response.json()
+        price = json["prices"]
+        for x in price:
+            print(x)
+        uberXprice = ':Sorry -No Rides Available'
+
+        uberGoprice = ':Sorry -No Rides Available'
+
+        uberMOTOprice =':Sorry -No Rides Available'
+
+
+        for x in range (o,len(price)):
+            if price[x]['display_name'] == "uberX":
+                uberXprice = price[x]['estimate']
+
+            elif price[x]['display_name'] == "uberGo":
+                uberGoprice = price[x]['estimate']
+
+            elif price[x]['display_name'] == "MOTO":
+                uberMOTOprice = price[x]['estimate']
+
+        faresGo.config(text='Your fare for Uber Go will be in range of/or {} '.format(uberGoprice))
+        faresMOTO.config(text='Your fare for Uber MOTO will in range of/or {}'.format(uberMOTOprice))
+        faresX.config(text='Your fare for Uber X will be in range of/or []'.format(uberXprice))
+ref = Getfare()
+def Start():
+
+    ref.start()
+root = Tk()
+root.title("Fare estimate")
+startLat = Label(root, text= "Enter starting latitude").grid(row= 0 , column = 0)
+sLatitude = Entry(root)
+sLatitude.grid(row=0, column=10)
+startLong = Label(root, text = "Enter starting Lomgitude").grid(row=10, column=0)
+sLongitude = Entry(root)
+sLongitude.grid(row=10, column=10)
+space0 = Label(root, text='           ').grid(row=20, column=0)
+endLatitude = Label(root, text = "Enter Drop latitude").grid (row=30, column=0)
+eLatitude = Entry(root)
+eLatitude.grid(row=30, column=10)
+endLongitude = Label(root, text = "Enter Drop Longitude").grid(row = 40, column = 0)
+eLongitude = Entry(root)
+eLongitude.grid(row = 40, column = 10 )
+
+space1 = Label(root, text='           ').grid(row=50, column=0)
+
+btn = Button(root, text='Submit', command=Start).grid(row=60, column=5)
+
+space2 = Label(root, text='       ').grid(row=70, column=0)
+
+fares = Label(root, text='Your fares will be shown below!! ').grid(row=80, column=5)
+
+faresGo = Label(root)
+faresGo.grid(row=90, column=5)
+
+faresMOTO = Label(root)
+faresMOTO.grid(row=100, column=5)
+
+faresX = Label(root)
+faresX.grid(row=110, column=5)
+
+
+root.resizable(False, False)
+root.mainloop()
