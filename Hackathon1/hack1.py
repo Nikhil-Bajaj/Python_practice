@@ -3,10 +3,10 @@ from matplotlib import style
 from scipy import stats
 import numpy as np
 import pandas as pd
-from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn import metrics
-
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error
 class A:
     def __init__(self):
         pass
@@ -30,21 +30,61 @@ class A:
         list6 = a3["YEARS"]
         plt.title("Bar Graph")
 
-        ax = plt.subplot(111)
-        ax.bar(list2 - 0.2, list1, width=0.2, color='b', align='center')
-        ax.bar(list4, list3, width=0.2, color='r', align='center')
-        ax.bar(list6 + 0.2, list5, width=0.2, color='c', align='center')
-        plt.plot(list2,list1,label= "FB",linewidth = 2)
-        plt.plot(list4,list3,label = "INSTAGRAM",linewidth = 3)
-        plt.plot(list6,list5,label = "SNAPCHAT",linewidth = 4)
-        X =[list2,list4,list6]
-        Y = [list1,list3,list5]
-        #dt = stats.linregress(X,Y)
-        #print(dt[0])
-        #print(dt[1])
-        #plt.plot(X,Y,"ro")
-        from sklearn.linear_model import LinearRegression
-        from sklearn.metrics import mean_squared_error
+        #ax = plt.subplot(111)
+        #ax.bar(list2 - 0.2, list1, width=0.2, color='b', align='center')
+        #ax.bar(list4, list3, width=0.2, color='r', align='center')
+        #ax.bar(list6 + 0.2, list5, width=0.2, color='c', align='center')
+        plt.plot(list2,list1,label= "FB",linewidth = 1)
+        plt.plot(list4,list3,label = "INSTAGRAM",linewidth = 1.25)
+        plt.plot(list6,list5,label = "SNAPCHAT",linewidth = 1.48)
+        X = list2
+        Y = list1
+        dt = stats.linregress(X,Y)
+        b1 = (dt[0])
+        b0 = (dt[1])
+        Y1 = []
+
+        for x in X:
+            y = b0 + (b1 * x)
+            Y1.append(y)
+        print("============")
+        print(Y1)
+        print("============")
+
+        plt.plot(X,Y,"o",X,Y1)
+        B = list4
+        C = list3
+        dt = stats.linregress(B, C)
+        b1 = (dt[0])
+        b0 = (dt[1])
+        Y2 = []
+
+        for x in B:
+            y = b0 + (b1 * x)
+            Y2.append(y)
+        print("============")
+        print(Y2)
+        print("============")
+
+        plt.plot(B, C ,"o", B, Y2)
+
+        D = list6
+        E = list5
+        dt = stats.linregress(D, E)
+        b1 = dt[0]
+
+        b0 = (dt[1])
+        Y3 = []
+
+        for x in D:
+            y = b0 + (b1 * x)
+            Y3.append(y)
+        print("============")
+        print(Y3)
+        print("============")
+
+        plt.plot(D, E, "o", D , Y3 )
+
 
         #regression = LinearRegression()
         #
@@ -64,6 +104,7 @@ class A:
         plt.ylabel('USERS')
         plt.xlabel('YEARS')
         plt.legend()
+        plt.grid(True)
         plt.show()
 s1 = A()
 s1.Graph()
@@ -77,3 +118,4 @@ s1.Graph()
 NIKHIL BAJAJ
 ARUNAV GOEL
 """
+
