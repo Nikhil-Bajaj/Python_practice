@@ -75,3 +75,52 @@ faresX.grid(row=110, column=5)
 
 root.resizable(False, False)
 root.mainloop()
+"""def selection():
+    a = Lb.curselection()
+    for i in a:
+        b = List1.get(i)
+    if b == "A":
+        startLat = ''
+        startLong = ''
+        endLat = ''
+        endLong = ''
+    elif b == "B":
+        startLat = ''
+        startLong = ''
+        endLat = ''
+        endLong = ''
+    elif b == "C":
+        startLat = ''
+        startLong = ''
+        endLat = ''
+        endLong = ''
+    elif b == "D":
+        startLat = ''
+        startLong = ''
+        endLat = ''
+        endLong = ''
+    elif b == "E":
+        startLat = ''
+        startLong = ''
+        endLat = ''
+        endLong = ''
+    elif b == "F":
+        startLat = ''
+        startLong = ''
+        endLat = ''
+        endLong = ''
+    elif b == "G":
+        startLat = ''
+        startLong = ''
+        endLat = ''
+        endLong = ''
+List1 = Listbox(root,selectmode = EXTENDED).grid(row = ,column = )
+List1.insert(1,"A")
+List1.insert(2,"B")
+List1.insert(3,"C")
+List1.insert(4,"D")
+List1.insert(5,"E")
+List1.insert(6,"F")
+List1.insert(7,"G")
+List1.pack()
+"""
