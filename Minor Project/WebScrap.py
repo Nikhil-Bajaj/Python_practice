@@ -5,11 +5,11 @@ import time
 import os
 import threading
 
-
+#Web Scraping of Data using multithreading
 class data1(threading.Thread):
     def run(self):
-        starttime = time.time()
-        z = ['AFG', 'AUS', 'BAN']
+        starttime = time.time() #To Check Time Taken to scrap this block
+        z = ['AFG', 'AUS', 'BAN'] #First 3 countries according to alphabetical order)
 
         for country in z:
             url = 'http://www.howstat.com/cricket/Statistics/Players/PlayerCountryList.asp?Country={}'.format(country)
@@ -27,7 +27,7 @@ class data1(threading.Thread):
                         table.append('0')
                     else:
                         table.append(z)
-
+            #Taking the characteristics of player from 20-36 columns in the stripped text
             init = 20
             last = 36
             # print('{}'.format(country))
@@ -35,6 +35,7 @@ class data1(threading.Thread):
                 os.remove("{}.csv".format(country))
             except:
                 pass
+            #Creating Head for CSV According to attributes
             head = ['Name', 'TESTSM', 'TESTSRuns', 'TESTSBat Avg', 'TESTSWkts', 'TESTSBowl Avg',
                     'ODIM', 'ODIRuns', 'ODIBat Avg', 'ODIWkts', 'ODIBowl Avg',
                     'T20M', 'T20Runs', 'T20Bat Avg', 'T20Wkts', 'T20Bowl Avg']
@@ -57,7 +58,7 @@ class data1(threading.Thread):
                 last += 16
 
         endtime = int(time.time() - starttime)
-        print('Thread 1', endtime, 'seconds  ')
+        #print('Thread 1', endtime, 'seconds  ')
 
 
 class data1_5(threading.Thread):
@@ -85,10 +86,7 @@ class data1_5(threading.Thread):
             init = 20
             last = 36
             # print('{}'.format(country))
-            try:
-                os.remove("{}.csv".format(country))
-            except:
-                pass
+
             head = ['Name', 'TESTSM', 'TESTSRuns', 'TESTSBat Avg', 'TESTSWkts', 'TESTSBowl Avg',
                     'ODIM', 'ODIRuns', 'ODIBat Avg', 'ODIWkts', 'ODIBowl Avg',
                     'T20M', 'T20Runs', 'T20Bat Avg', 'T20Wkts', 'T20Bowl Avg']
@@ -111,10 +109,9 @@ class data1_5(threading.Thread):
                 last += 16
 
         endtime = int(time.time() - starttime)
-        print('Thread 1.5', endtime, 'seconds  ')
+        #print('Thread 1.5', endtime, 'seconds  ')
 
 
-print()
 
 
 class data2(threading.Thread):
@@ -142,10 +139,7 @@ class data2(threading.Thread):
             init = 20
             last = 36
             # print('{}'.format(country))
-            try:
-                os.remove("{}.csv".format(country))
-            except:
-                pass
+
             head = ['Name', 'TESTSM', 'TESTSRuns', 'TESTSBat Avg', 'TESTSWkts', 'TESTSBowl Avg',
                     'ODIM', 'ODIRuns', 'ODIBat Avg', 'ODIWkts', 'ODIBowl Avg',
                     'T20M', 'T20Runs', 'T20Bat Avg', 'T20Wkts', 'T20Bowl Avg']
@@ -168,7 +162,7 @@ class data2(threading.Thread):
                 last += 16
 
         endtime = int(time.time() - starttime)
-        print('Thread 2', endtime, 'seconds  ')
+        #print('Thread 2', endtime, 'seconds  ')
 
 
 class data2_5(threading.Thread):
@@ -196,10 +190,7 @@ class data2_5(threading.Thread):
             init = 20
             last = 36
             # print('{}'.format(country))
-            try:
-                os.remove("{}.csv".format(country))
-            except:
-                pass
+
             head = ['Name', 'TESTSM', 'TESTSRuns', 'TESTSBat Avg', 'TESTSWkts', 'TESTSBowl Avg',
                     'ODIM', 'ODIRuns', 'ODIBat Avg', 'ODIWkts', 'ODIBowl Avg',
                     'T20M', 'T20Runs', 'T20Bat Avg', 'T20Wkts', 'T20Bowl Avg']
@@ -222,7 +213,7 @@ class data2_5(threading.Thread):
                 last += 16
 
         endtime = int(time.time() - starttime)
-        print('Thread 2.5', endtime, 'seconds  ')
+        #print('Thread 2.5', endtime, 'seconds  ')
 
 
 class data3(threading.Thread):
@@ -250,10 +241,7 @@ class data3(threading.Thread):
             init = 20
             last = 36
             # print('{}'.format(country))
-            try:
-                os.remove("{}.csv".format(country))
-            except:
-                pass
+
             head = ['Name', 'TESTSM', 'TESTSRuns', 'TESTSBat Avg', 'TESTSWkts', 'TESTSBowl Avg',
                     'ODIM', 'ODIRuns', 'ODIBat Avg', 'ODIWkts', 'ODIBowl Avg',
                     'T20M', 'T20Runs', 'T20Bat Avg', 'T20Wkts', 'T20Bowl Avg']
@@ -263,11 +251,7 @@ class data3(threading.Thread):
 
             for x in range(0, len(table) // 16 - 1):
                 n = table[init:last]
-                te = []
-                # if n[0][-1:] == '*':
-                #     print(n)
-                # else:
-                #     pass
+
 
                 with open("{}.csv".format(country), "a") as fp:
                     wr = csv.writer(fp, dialect='excel')
@@ -276,7 +260,7 @@ class data3(threading.Thread):
                 last += 16
 
         endtime = int(time.time() - starttime)
-        print('Thread 3', endtime, 'seconds  ')
+        #print('Thread 3', endtime, 'seconds  ')
 
 
 class data3_5(threading.Thread):
@@ -304,10 +288,7 @@ class data3_5(threading.Thread):
             init = 20
             last = 36
             # print('{}'.format(country))
-            try:
-                os.remove("{}.csv".format(country))
-            except:
-                pass
+
             head = ['Name', 'TESTSM', 'TESTSRuns', 'TESTSBat Avg', 'TESTSWkts', 'TESTSBowl Avg',
                     'ODIM', 'ODIRuns', 'ODIBat Avg', 'ODIWkts', 'ODIBowl Avg',
                     'T20M', 'T20Runs', 'T20Bat Avg', 'T20Wkts', 'T20Bowl Avg']
@@ -330,7 +311,7 @@ class data3_5(threading.Thread):
                 last += 16
 
         endtime = int(time.time() - starttime)
-        print('Thread 3', endtime, 'seconds  ')
+        #print('Thread 3', endtime, 'seconds  ')
 
 
 class data4(threading.Thread):
@@ -358,10 +339,7 @@ class data4(threading.Thread):
             init = 20
             last = 36
             # print('{}'.format(country))
-            try:
-                os.remove("{}.csv".format(country))
-            except:
-                pass
+
             head = ['Name', 'TESTSM', 'TESTSRuns', 'TESTSBat Avg', 'TESTSWkts', 'TESTSBowl Avg',
                     'ODIM', 'ODIRuns', 'ODIBat Avg', 'ODIWkts', 'ODIBowl Avg',
                     'T20M', 'T20Runs', 'T20Bat Avg', 'T20Wkts', 'T20Bowl Avg']
@@ -384,7 +362,7 @@ class data4(threading.Thread):
                 last += 16
 
         endtime = int(time.time() - starttime)
-        print('Thread 4', endtime, 'seconds  ')
+        #print('Thread 4', endtime, 'seconds  ')
 
 
 class data4_5(threading.Thread):
@@ -412,10 +390,7 @@ class data4_5(threading.Thread):
             init = 20
             last = 36
             # print('{}'.format(country))
-            try:
-                os.remove("{}.csv".format(country))
-            except:
-                pass
+
             head = ['Name', 'TESTSM', 'TESTSRuns', 'TESTSBat Avg', 'TESTSWkts', 'TESTSBowl Avg',
                     'ODIM', 'ODIRuns', 'ODIBat Avg', 'ODIWkts', 'ODIBowl Avg',
                     'T20M', 'T20Runs', 'T20Bat Avg', 'T20Wkts', 'T20Bowl Avg']
@@ -438,7 +413,7 @@ class data4_5(threading.Thread):
                 last += 16
 
         endtime = int(time.time() - starttime)
-        print('Thread 4.5', endtime, 'seconds  ')
+        #print('Thread 4.5', endtime, 'seconds  ')
 
 
 def abc():
@@ -467,6 +442,3 @@ def abc():
 
     ref4.start()
     ref4_5.start()
-
-
-abc()
